@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="typing-area">
+    <div id="stopwatch">
+        <div>
+            <span class="btn btn-info" data-bind="click: restartGame">Restart</span>
+        </div>
+    </div>
+    <code class="text-info">
+        <span data-bind="text: lines[0].line"></span><span class="text-danger" data-bind="text: lines[0].lineWrong"></span>
+        <br />
+        <span data-bind="visible: currentLine() > 0" style="margin-top: 4px;">
+            <span data-bind="text: lines[1].line"></span><span class="text-danger" data-bind="text: lines[1].lineWrong"></span>
+            <br />
+        </span>
+        <span data-bind="visible: currentLine() > 1">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span data-bind="text: lines[2].line"></span><span class="text-danger" data-bind="text: lines[2].lineWrong"></span>
+            <br />
+        </span>
+        <span data-bind="visible: currentLine() > 2">
+            <span data-bind="text: lines[3].line"></span><span class="text-danger" data-bind="text: lines[3].lineWrong"></span>
+            <br />
+        </span>
+    </code>
+</div>
+<div>
+    <code class="text-info">
+        <span>
+            public static void Main(string[] args)
+            <br />
+        </span>
+        <span>
+            {
+            <br />
+        </span>
+        <span>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            Console.WriteLine("Hello NDC!");
+            <br />
+        </span>
+        <span>
+            }
+            <br />
+        </span>
+    </code>
+</div>
+<script src="/Scripts/knockout-3.1.0.js"></script>
+<script src="/Scripts/Home/stopwatch.js"></script>
+<script src="/Scripts/Home/twoType.js"></script>
