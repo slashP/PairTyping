@@ -44,3 +44,11 @@ input[type="checkbox"].input-validation-error {
 .wrong-key {
     color: red;
 }
+
+#typing-area {
+    margin-left: 10%;
+}
+
+#typing-area span {
+    font-size: 18px;
+}

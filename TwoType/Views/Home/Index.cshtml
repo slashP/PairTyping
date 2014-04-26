@@ -4,9 +4,7 @@
 
 <div id="typing-area">
     <div id="stopwatch">
-        <div>
-            <span class="btn btn-info" data-bind="click: restartGame">Restart</span>
-        </div>
+        <span class="btn btn-info" data-bind="click: restartGame">Restart</span>
     </div>
     <code class="text-info">
         <span data-bind="text: lines[0].line"></span><span class="text-danger" data-bind="text: lines[0].lineWrong"></span>
@@ -25,28 +23,57 @@
             <br />
         </span>
     </code>
+    <div>
+        <code class="text-info">
+            <span>
+                <span data-bind="text: lines[0].lineActual"></span>
+                <br />
+            </span>
+            <span>
+                <span data-bind="text: lines[1].lineActual"></span>
+                <br />
+            </span>
+            <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span data-bind="text: lines[2].lineActual"></span>
+                <br />
+            </span>
+            <span>
+                <span data-bind="text: lines[3].lineActual"></span>
+                <br />
+            </span>
+        </code>
+    </div>
+    <div data-bind="visible: isGameFinished">
+        <div class="form-group">
+            <label for="nameInput">Name</label>
+            <input class="form-control" id="nameInput" placeholder="Name" data-bind="value: name, valueUpdate:'afterkeydown'">
+        </div>
+        <div class="form-group">
+            <label for="phoneInput">Phone(s)</label>
+            <input class="form-control" id="phoneInput" placeholder="Phone(s)" data-bind="value: phone, valueUpdate:'afterkeydown'">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" data-bind="click: postScore, enable: name() != '' && phone() != ''">Submit score</button>
+        </div>
+    </div>
+    <div>
+        <h2>Highscore</h2>
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>Name</th>
+                <th>Time</th>
+            </tr>
+            <!-- ko foreach: highscores -->
+            <tr>
+                <td data-bind="text: name"></td>
+                <td data-bind="text: time"></td>
+            </tr>
+            <!-- /ko -->
+        </table>
+    </div>
 </div>
-<div>
-    <code class="text-info">
-        <span>
-            public static void Main(string[] args)
-            <br />
-        </span>
-        <span>
-            {
-            <br />
-        </span>
-        <span>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            Console.WriteLine("Hello NDC!");
-            <br />
-        </span>
-        <span>
-            }
-            <br />
-        </span>
-    </code>
-</div>
+
 <script src="/Scripts/knockout-3.1.0.js"></script>
 <script src="/Scripts/Home/stopwatch.js"></script>
 <script src="/Scripts/Home/twoType.js"></script>

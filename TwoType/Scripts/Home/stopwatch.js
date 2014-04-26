@@ -1,9 +1,6 @@
 ﻿var Stopwatch = function (elem, options) {
 
     var timer = createTimer(),
-        startButton = createButton("start", start),
-        stopButton = createButton("stop", stop),
-        resetButton = createButton("reset", reset),
         offset,
         clock,
         interval;
@@ -14,27 +11,11 @@
 
     // append elements     
     elem.appendChild(timer);
-    //elem.appendChild(startButton);
-    //elem.appendChild(stopButton);
-    //elem.appendChild(resetButton);
-
-    // initialize
     reset();
 
     // private functions
     function createTimer() {
         return document.createElement("span");
-    }
-
-    function createButton(action, handler) {
-        var a = document.createElement("a");
-        a.href = "#" + action;
-        a.innerHTML = action;
-        a.addEventListener("click", function (event) {
-            handler();
-            event.preventDefault();
-        });
-        return a;
     }
 
     function start() {
@@ -73,8 +54,13 @@
         return d;
     }
 
+    function getTime() {
+        return clock;
+    }
+
     // public API
     this.start = start;
     this.stop = stop;
     this.reset = reset;
+    this.getTime = getTime;
 };

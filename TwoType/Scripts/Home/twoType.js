@@ -15,7 +15,7 @@
             {
                 line: ko.observable(""),
                 lineWrong: ko.observableArray(""),
-                lineActual: "Console.WriteLine(\"Hello NDC!\");"
+                lineActual: "Console.WriteLine(@\"Hello NDC!\");"
             },
             {
                 line: ko.observable(""),
@@ -31,27 +31,57 @@
                 self.stopwatch.start();
             }
         });
-        var lastLineIndex = self.lines.length - 1;
-
-        this.lines[lastLineIndex].line.subscribe(function(newValue) {
-            if (self.lines[lastLineIndex].lineActual == newValue) {
-                self.gameFinished();
-            }
-        });
-
-        self.gameFinished = function() {
-            self.stopwatch.stop();
-        }
 
         this.restartGame = function () {
             self.stopwatch.stop();
             self.stopwatch.reset();
+            self.name("");
+            self.phone("");
             this.lines.forEach(function(line) {
                 line.line("");
                 line.lineWrong("");
                 self.currentLine(0);
             });
         }
+
+        this.isGameFinished = ko.computed(function () {
+            return self.lines.every(function (line) {
+                return line.line() === line.lineActual;
+            });
+        });
+
+        self.isGameFinished.subscribe(function() {
+            if (self.isGameFinished()) {
+                self.stopwatch.stop();
+            }
+        });
+        this.name = ko.observable("");
+        this.phone = ko.observable("");
+
+        this.highscores = ko.observableArray([]);
+        this.postScore = function () {
+            $.post("api/highscore",
+                { name: self.name(), playTime: self.stopwatch.getTime() / 1000, phone: self.phone() },
+                function(result) {
+                    if (result.Message && result.Message.indexOf("Authorization") > -1) {
+                        self.name("Not this time bro. You must log in");
+                    } else {
+                        setHighscores(result);
+                        self.restartGame();
+                    }
+                });
+        }
+
+        function setHighscores(result) {
+            self.highscores(result.map(function (highscore) {
+                return { name: highscore.Name, time: highscore.PlayTime };
+            }));
+        }
+
+        // get initial highscores
+        $.get("/api/highscore", function (result) {
+            setHighscores(result);
+        });
     }
     var typing = new TypingVM();
     ko.applyBindings(typing, document.getElementById("typing-area"));
@@ -60,7 +90,7 @@
     window.addEventListener("keydown", specialCharacterPressed);
 
     function keyPressed(e) {
-        if (e.keyCode === 13) {
+        if (e.keyCode === 13 || typing.isGameFinished()) {
             return;
         }
         var line = typing.lines[typing.currentLine()];
@@ -72,9 +102,15 @@
         } else {
             line.lineWrong(line.lineWrong() + newChar);
         }
+        if (e.keyCode == 32) { // stop scrolling when pressing space
+            e.preventDefault();
+        }
     }
 
     function specialCharacterPressed(e) {
+        if (typing.isGameFinished()) {
+            return false;
+        }
         var line = typing.lines[typing.currentLine()];
         if (e.keyCode == 8) {
             if (line.lineWrong().length === 0 && line.line().length === 0) {
@@ -82,10 +118,11 @@
             } else {
                 line.lineWrong(line.lineWrong().slice(0, -1));
             }
-            return false;
+            e.preventDefault();
         }
         else if (e.keyCode == 13 && line.line().length == line.lineActual.length) {
             typing.currentLine(typing.currentLine() + 1);
         }
+        return false;
     }
 })();

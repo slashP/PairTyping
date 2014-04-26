@@ -293,6 +293,12 @@ namespace TwoType.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult LogOut()
+        {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
