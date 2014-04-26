@@ -24,7 +24,6 @@ namespace TwoType.Controllers
         }
 
         [HttpPost]
-        [Authorize(Users = "slashP")]
         [Route("api/highscore")]
         public async Task<IEnumerable<HighscoreEntry>> Post(HighscoreEntry highscore)
         {
