@@ -3,69 +3,73 @@
 }
 
 <div id="typing-area">
-    <div id="stopwatch">
-        <span class="btn btn-info" data-bind="click: restartGame">Restart</span>
-    </div>
-    <code class="text-info">
-        <span data-bind="text: lines[0].line"></span><span class="text-danger" data-bind="text: lines[0].lineWrong"></span>
-        <br />
-        <span data-bind="visible: currentLine() > 0" style="margin-top: 4px;">
-            <span data-bind="text: lines[1].line"></span><span class="text-danger" data-bind="text: lines[1].lineWrong"></span>
-            <br />
-        </span>
-        <span data-bind="visible: currentLine() > 1">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span data-bind="text: lines[2].line"></span><span class="text-danger" data-bind="text: lines[2].lineWrong"></span>
-            <br />
-        </span>
-        <span data-bind="visible: currentLine() > 2">
-            <span data-bind="text: lines[3].line"></span><span class="text-danger" data-bind="text: lines[3].lineWrong"></span>
-            <br />
-        </span>
-    </code>
-    <div>
-        <code class="text-info">
-            <span>
-                <span data-bind="text: lines[0].lineActual"></span>
-                <br />
-            </span>
-            <span>
-                <span data-bind="text: lines[1].lineActual"></span>
-                <br />
-            </span>
-            <span>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <span data-bind="text: lines[2].lineActual"></span>
-                <br />
-            </span>
-            <span>
-                <span data-bind="text: lines[3].lineActual"></span>
-                <br />
-            </span>
-        </code>
-    </div>
-    <div data-bind="visible: isGameFinished">
-        <div class="form-group">
-            <label for="nameInput">Name</label>
-            <input class="form-control" id="nameInput" placeholder="Name" data-bind="value: name, valueUpdate:'afterkeydown'">
+    <div class="col-md-6">
+        <div id="stopwatch" class="small-margin-top">
+            <span class="btn btn-info" data-bind="click: restartGame">Restart</span>
         </div>
-        <div class="form-group">
-            <label for="phoneInput">Phone(s)</label>
-            <input class="form-control" id="phoneInput" placeholder="Phone(s)" data-bind="value: phone, valueUpdate:'afterkeydown'">
+        <div class="small-margin-top">
+            <code class="text-info">
+                <span data-bind="text: lines[0].line"></span><span class="text-danger" data-bind="text: lines[0].lineWrong"></span>
+                <br />
+                <span data-bind="visible: currentLine() > 0" style="margin-top: 4px;">
+                    <span data-bind="text: lines[1].line"></span><span class="text-danger" data-bind="text: lines[1].lineWrong"></span>
+                    <br />
+                </span>
+                <span data-bind="visible: currentLine() > 1">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span data-bind="text: lines[2].line"></span><span class="text-danger" data-bind="text: lines[2].lineWrong"></span>
+                    <br />
+                </span>
+                <span data-bind="visible: currentLine() > 2">
+                    <span data-bind="text: lines[3].line"></span><span class="text-danger" data-bind="text: lines[3].lineWrong"></span>
+                    <br />
+                </span>
+            </code>
         </div>
-        <div class="form-group">
-            <button class="btn btn-primary" data-bind="click: postScore, enable: name() != '' && phone() != ''">Submit score</button>
+        <div class="small-margin-top">
+            <code class="text-info">
+                <span>
+                    <span data-bind="text: lines[0].lineActual"></span>
+                    <br />
+                </span>
+                <span>
+                    <span data-bind="text: lines[1].lineActual"></span>
+                    <br />
+                </span>
+                <span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span data-bind="text: lines[2].lineActual"></span>
+                    <br />
+                </span>
+                <span>
+                    <span data-bind="text: lines[3].lineActual"></span>
+                    <br />
+                </span>
+            </code>
+        </div>
+        <div data-bind="visible: isGameFinished">
+            <div class="form-group">
+                <label for="nameInput">Name</label>
+                <input class="form-control" id="nameInput" placeholder="Name" data-bind="value: name, valueUpdate:'afterkeydown'">
+            </div>
+            <div class="form-group">
+                <label for="phoneInput">Phone(s)</label>
+                <input class="form-control" id="phoneInput" placeholder="Phone(s)" data-bind="value: phone, valueUpdate:'afterkeydown'">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" data-bind="click: postScore, enable: name() != '' && phone() != ''">Submit score</button>
+            </div>
         </div>
     </div>
-    <div>
-        <h2>Highscore</h2>
-        <table class="table table-striped table-hover">
+    <div class="col-md-5 col-md-offset-1 small-margin-top">
+        <h4>Highscore</h4>
+        <table class="table table-striped table-hover table-condensed">
             <tr>
                 <th>Name</th>
                 <th>Time</th>
             </tr>
             <!-- ko foreach: highscores -->
-            <tr>
+            <tr data-bind="attr: { title: phone }">
                 <td data-bind="text: name"></td>
                 <td data-bind="text: time"></td>
             </tr>

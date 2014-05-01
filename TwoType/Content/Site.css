@@ -45,10 +45,10 @@ input[type="checkbox"].input-validation-error {
     color: red;
 }
 
-#typing-area {
-    margin-left: 10%;
-}
-
 #typing-area span {
     font-size: 18px;
+}
+
+.small-margin-top {
+    margin-top: 15px;
 }

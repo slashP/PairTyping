@@ -60,7 +60,7 @@
 
         this.highscores = ko.observableArray([]);
         this.postScore = function () {
-            $.post("api/highscore",
+            $.post("/api/highscore",
                 { name: self.name(), playTime: self.stopwatch.getTime() / 1000, phone: self.phone() },
                 function(result) {
                     if (result.Message && result.Message.indexOf("Authorization") > -1) {
@@ -74,7 +74,7 @@
 
         function setHighscores(result) {
             self.highscores(result.map(function (highscore) {
-                return { name: highscore.Name, time: highscore.PlayTime };
+                return { name: highscore.Name, time: highscore.PlayTime, phone: highscore.Phone };
             }));
         }
 
