@@ -8,44 +8,9 @@
             <span class="btn btn-info" data-bind="click: restartGame">Restart</span>
         </div>
         <div class="small-margin-top">
-            <code class="text-info">
-                <span data-bind="text: lines[0].line"></span><span class="text-danger" data-bind="text: lines[0].lineWrong"></span>
-                <br />
-                <span data-bind="visible: currentLine() > 0" style="margin-top: 4px;">
-                    <span data-bind="text: lines[1].line"></span><span class="text-danger" data-bind="text: lines[1].lineWrong"></span>
-                    <br />
-                </span>
-                <span data-bind="visible: currentLine() > 1">
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <span data-bind="text: lines[2].line"></span><span class="text-danger" data-bind="text: lines[2].lineWrong"></span>
-                    <br />
-                </span>
-                <span data-bind="visible: currentLine() > 2">
-                    <span data-bind="text: lines[3].line"></span><span class="text-danger" data-bind="text: lines[3].lineWrong"></span>
-                    <br />
-                </span>
-            </code>
-        </div>
-        <div class="small-margin-top">
-            <code class="text-info">
-                <span>
-                    <span data-bind="text: lines[0].lineActual"></span>
-                    <br />
-                </span>
-                <span>
-                    <span data-bind="text: lines[1].lineActual"></span>
-                    <br />
-                </span>
-                <span>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <span data-bind="text: lines[2].lineActual"></span>
-                    <br />
-                </span>
-                <span>
-                    <span data-bind="text: lines[3].lineActual"></span>
-                    <br />
-                </span>
-            </code>
+            <div class="text-info well" data-bind="foreach: lines" style="font-family: Consolas">
+                <div class="type-line"><span data-bind="visible: indent">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="text-success type-line" data-bind="text: correct"></span><span class="text-danger type-line" data-bind="text: wrong"></span><span class="type-line" data-bind="text: remaining, css:{'caret-blink':$parent.currentLineNumber() == $index()}"></span></div>
+            </div>
         </div>
         <div data-bind="visible: isGameFinished">
             <div class="form-group">

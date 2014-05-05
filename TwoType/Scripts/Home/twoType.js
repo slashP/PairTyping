@@ -1,32 +1,44 @@
 ﻿(function () {
+
+    function Line(expected, indent) {
+        this.expected = expected;
+        this.indent = indent;
+        this.correct = ko.observable("");
+        this.wrong = ko.observable("");
+        this.remaining = ko.computed(this._remaining, this);
+        this.isComplete = ko.computed(this._isComplete, this);
+    }
+
+    Line.prototype._remaining = function() {
+        return this.expected.substr(this.correct().length);
+    };
+
+    Line.prototype._isComplete = function() {
+        return this.correct() === this.expected && this.wrong().length === 0;
+    };
+
+
+
     var TypingVM = function () {
         var self = this;
-        this.lines = [
-            {
-                line: ko.observable(""),
-                lineWrong: ko.observableArray(""),
-                lineActual: "public static void Main(string[] args)"
-            },
-            {
-                line: ko.observable(""),
-                lineWrong: ko.observableArray(""),
-                lineActual: "{"
-            },
-            {
-                line: ko.observable(""),
-                lineWrong: ko.observableArray(""),
-                lineActual: "Console.WriteLine(@\"Hello NDC!\");"
-            },
-            {
-                line: ko.observable(""),
-                lineWrong: ko.observableArray(""),
-                lineActual: "}"
-            }
-        ];
-        this.currentLine = ko.observable(0);
+
+        var program = "public static void Main(string[] args)\n" +
+            "{\n" +
+            "\tConsole.WriteLine(@\"Hello NDC!\");\n" +
+            "}";
+
+        this.lines = program.split("\n").map(function(line) {
+            return new Line(line.trim(), line.indexOf("\t") === 0);
+        });
+
+        this.currentLineNumber = ko.observable(0);
+
+        this.currentLine = ko.computed(function() {
+            return this.lines[this.currentLineNumber()];
+        }, this);
 
         this.stopwatch = new Stopwatch(document.getElementById("stopwatch"), { delay: 123 });
-        this.lines[0].line.subscribe(function(newValue) {
+        this.lines[0].correct.subscribe(function(newValue) {
             if (newValue) {
                 self.stopwatch.start();
             }
@@ -39,14 +51,14 @@
             self.phone("");
             this.lines.forEach(function(line) {
                 line.line("");
-                line.lineWrong("");
-                self.currentLine(0);
+                line.wrong("");
+                self.currentLineNumber(0);
             });
         }
 
         this.isGameFinished = ko.computed(function () {
             return self.lines.every(function (line) {
-                return line.line() === line.lineActual;
+                return line.isComplete();
             });
         });
 
@@ -55,6 +67,7 @@
                 self.stopwatch.stop();
             }
         });
+
         this.name = ko.observable("");
         this.phone = ko.observable("");
 
@@ -90,19 +103,20 @@
     window.addEventListener("keydown", specialCharacterPressed);
 
     function keyPressed(e) {
-        if (e.keyCode === 13 || typing.isGameFinished()) {
+        if (e.which === 13 || typing.isGameFinished()) {
             return;
         }
-        var line = typing.lines[typing.currentLine()];
-        var wrongCharCount = line.lineWrong().length;
-        var currentPosition = line.line().length + wrongCharCount;
-        var newChar = String.fromCharCode(e.keyCode);
-        if (newChar == line.lineActual.charAt(currentPosition) && wrongCharCount === 0) {
-            line.line(line.line() + newChar);
+        var line = typing.currentLine();
+        var wrongCharCount = line.wrong().length;
+        var currentPosition = line.correct().length;
+        var newChar = String.fromCharCode(e.which);
+        if (newChar.length == 0) return;
+        if (newChar == line.expected.charAt(currentPosition) && wrongCharCount === 0) {
+            line.correct(line.correct() + newChar);
         } else {
-            line.lineWrong(line.lineWrong() + newChar);
+            line.wrong(line.wrong() + newChar);
         }
-        if (e.keyCode == 32) { // stop scrolling when pressing space
+        if (e.which == 32) { // stop scrolling when pressing space
             e.preventDefault();
         }
     }
@@ -111,17 +125,15 @@
         if (typing.isGameFinished()) {
             return false;
         }
-        var line = typing.lines[typing.currentLine()];
-        if (e.keyCode == 8) {
-            if (line.lineWrong().length === 0 && line.line().length === 0) {
-                typing.currentLine(Math.max(0, typing.currentLine() - 1));
-            } else {
-                line.lineWrong(line.lineWrong().slice(0, -1));
+        var line = typing.currentLine();
+        if (e.which == 8) {
+            if (line.wrong().length !== 0) {
+                line.wrong(line.wrong().slice(0, -1));
             }
             e.preventDefault();
         }
-        else if (e.keyCode == 13 && line.line().length == line.lineActual.length) {
-            typing.currentLine(typing.currentLine() + 1);
+        else if (e.which == 13 && line.isComplete()) {
+            typing.currentLineNumber(typing.currentLineNumber() + 1);
         }
         return false;
     }

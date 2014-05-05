@@ -52,3 +52,35 @@ input[type="checkbox"].input-validation-error {
 .small-margin-top {
     margin-top: 15px;
 }
+
+#typing-area .type-line {
+    white-space: pre-wrap;
+}
+#typing-area .type-line.caret-blink{
+    position: relative;
+}
+
+#typing-area .type-line.text-success {
+    background-color: #DFF0D8;
+}
+
+#typing-area .type-line.text-danger {
+    background-color: #F2DEDE;
+}
+
+#typing-area .caret-blink:before {
+    content: "\2588";
+    animation: caret 1s steps(1, start) infinite;
+    position: absolute;
+    left: 0;
+}
+
+@keyframes caret {
+  50% {
+      color: #3A87AD;
+  }
+
+  100% {
+      color: transparent;
+  }
+}
