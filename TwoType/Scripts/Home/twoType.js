@@ -50,7 +50,7 @@
             self.name("");
             self.phone("");
             this.lines.forEach(function(line) {
-                line.line("");
+                line.correct("");
                 line.wrong("");
                 self.currentLineNumber(0);
             });
