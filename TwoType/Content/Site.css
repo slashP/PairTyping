@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-size: 3vw;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -45,9 +46,6 @@ input[type="checkbox"].input-validation-error {
     color: red;
 }
 
-#typing-area span {
-    font-size: 18px;
-}
 
 .small-margin-top {
     margin-top: 15px;
@@ -61,11 +59,13 @@ input[type="checkbox"].input-validation-error {
 }
 
 #typing-area .type-line.text-success {
-    background-color: #DFF0D8;
+    color: #006400;
+    background-color: #78C857;
 }
 
 #typing-area .type-line.text-danger {
-    background-color: #F2DEDE;
+    color: rgb(114, 43, 42);
+    background-color: rgb(204, 120, 119);
 }
 
 #typing-area .caret-blink:before {
