@@ -19,6 +19,33 @@
 
 
 
+    function Game(program) {
+        var self = this;
+
+        this.lines = program.split("\n").map(function (line) {
+            return new Line(line.trim(), line.indexOf("\t") === 0);
+        });
+
+        this.currentLineNumber = ko.observable(0);
+
+        this.currentLine = ko.computed(function () {
+            return self.lines[self.currentLineNumber()];
+        });
+
+
+        this.isAtLeastOneCharacterCorrect = ko.computed(function() {
+            return self.lines[0].correct().length > 0;
+        });
+
+        this.isGameFinished = ko.computed(function () {
+            return self.lines.every(function (line) {
+                return line.isComplete();
+            });
+        });
+    }
+
+
+
     var TypingVM = function () {
         var self = this;
 
@@ -27,46 +54,38 @@
             "\tConsole.WriteLine(@\"Hello NDC!\");\n" +
             "}";
 
-        this.lines = program.split("\n").map(function(line) {
-            return new Line(line.trim(), line.indexOf("\t") === 0);
+        this.stopwatch = new Stopwatch(document.getElementById("stopwatch"), { delay: 123 });
+
+        this.game = ko.observable(new Game(program));
+
+        this.hasStarted = ko.computed(function() {
+            return self.game().isAtLeastOneCharacterCorrect();
         });
 
-        this.currentLineNumber = ko.observable(0);
+        this.isGameFinished = ko.computed(function() {
+            return self.game().isGameFinished();
+        });
 
-        this.currentLine = ko.computed(function() {
-            return this.lines[this.currentLineNumber()];
-        }, this);
-
-        this.stopwatch = new Stopwatch(document.getElementById("stopwatch"), { delay: 123 });
-        this.lines[0].correct.subscribe(function(newValue) {
-            if (newValue) {
+        this.hasStarted.subscribe(function (value) {
+            if (value) {
                 self.stopwatch.start();
+            } else {
+                self.stopwatch.stop();
+                self.stopwatch.reset();
             }
         });
-
-        this.restartGame = function () {
-            self.stopwatch.stop();
-            self.stopwatch.reset();
-            self.name("");
-            self.phone("");
-            this.lines.forEach(function(line) {
-                line.correct("");
-                line.wrong("");
-                self.currentLineNumber(0);
-            });
-        }
-
-        this.isGameFinished = ko.computed(function () {
-            return self.lines.every(function (line) {
-                return line.isComplete();
-            });
-        });
-
-        self.isGameFinished.subscribe(function() {
-            if (self.isGameFinished()) {
+        
+        this.isGameFinished.subscribe(function (value) {
+            if (value) {
                 self.stopwatch.stop();
             }
         });
+
+        this.restartGame = function() {
+            self.game(new Game(program));
+            self.name("");
+            self.phone("");
+        };
 
         this.name = ko.observable("");
         this.phone = ko.observable("");
@@ -106,7 +125,7 @@
         if (e.which === 13 || typing.isGameFinished()) {
             return;
         }
-        var line = typing.currentLine();
+        var line = typing.game().currentLine();
         var wrongCharCount = line.wrong().length;
         var currentPosition = line.correct().length;
         var newChar = String.fromCharCode(e.which);
@@ -125,7 +144,7 @@
         if (typing.isGameFinished()) {
             return false;
         }
-        var line = typing.currentLine();
+        var line = typing.game().currentLine();
         if (e.which == 8) {
             if (line.wrong().length !== 0) {
                 line.wrong(line.wrong().slice(0, -1));
@@ -133,7 +152,7 @@
             e.preventDefault();
         }
         else if (e.which == 13 && line.isComplete()) {
-            typing.currentLineNumber(typing.currentLineNumber() + 1);
+            typing.game().currentLineNumber(typing.game().currentLineNumber() + 1);
         }
         return false;
     }
