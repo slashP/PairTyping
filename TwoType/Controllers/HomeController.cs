@@ -26,5 +26,10 @@ namespace TwoType.Controllers
 
             return View();
         }
+
+        public ActionResult ViewHighscore(int id)
+        {
+            return View(id);
+        }
     }
 }

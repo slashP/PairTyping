@@ -25,7 +25,7 @@ namespace TwoType.Controllers
 
         [HttpPost]
         [Route("api/highscore")]
-        public async Task<IEnumerable<HighscoreEntry>> Post(HighscoreEntry highscore)
+        public async Task<Highscores> Post(HighscoreEntry highscore)
         {
             if (string.IsNullOrEmpty(highscore.Name) || string.IsNullOrEmpty(highscore.Phone) || highscore.PlayTime == 0)
             {
@@ -37,11 +37,12 @@ namespace TwoType.Controllers
                 db.HighscoreEntries.Add(highscore);
                 await db.SaveChangesAsync();
             }
-            return await Get();
+            var highscoreEntries = await Get();
+            return new Highscores { CurrentEntry = highscore, HighscoreEntries = highscoreEntries };
         }
 
         [HttpGet]
-        [Route("api/highscore")]
+        [Route("api/highscore/recording")]
         public async Task<HighscoreRecording> GetRecording(int id)
         {
             using (var db = new DataContext())
@@ -52,7 +53,7 @@ namespace TwoType.Controllers
 
         [HttpPost]
         [Route("api/highscore/recording")]
-        public async void PostRecording(HighscoreRecording recording)
+        public async Task<int> PostRecording(HighscoreRecording recording)
         {
             if (string.IsNullOrEmpty(recording.Name) || recording.PlayTime == 0)
             {
@@ -61,7 +62,7 @@ namespace TwoType.Controllers
             using (var db = new DataContext())
             {
                 db.HighscoreRecordings.Add(recording);
-                await db.SaveChangesAsync();
+                return await db.SaveChangesAsync();
             }
         }
     }
