@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201404262204122_InitialCreate.Designer.cs">
       <DependentUpon>201404262204122_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405131453416_HighscoreRecording.cs" />
+    <Compile Include="Migrations\201405131453416_HighscoreRecording.Designer.cs">
+      <DependentUpon>201405131453416_HighscoreRecording.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataContext.cs" />
@@ -255,6 +259,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201404262204122_InitialCreate.resx">
       <DependentUpon>201404262204122_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405131453416_HighscoreRecording.resx">
+      <DependentUpon>201405131453416_HighscoreRecording.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -9,5 +9,6 @@ namespace TwoType.Models
         }
 
         public IDbSet<HighscoreEntry> HighscoreEntries { get; set; }
+        public IDbSet<HighscoreRecording> HighscoreRecordings { get; set; }
     }
 }

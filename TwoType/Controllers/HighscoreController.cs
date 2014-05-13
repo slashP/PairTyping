@@ -39,5 +39,30 @@ namespace TwoType.Controllers
             }
             return await Get();
         }
+
+        [HttpGet]
+        [Route("api/highscore")]
+        public async Task<HighscoreRecording> GetRecording(int id)
+        {
+            using (var db = new DataContext())
+            {
+                return await db.HighscoreRecordings.FirstAsync(x => x.Id == id);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/highscore/recording")]
+        public async void PostRecording(HighscoreRecording recording)
+        {
+            if (string.IsNullOrEmpty(recording.Name) || recording.PlayTime == 0)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            using (var db = new DataContext())
+            {
+                db.HighscoreRecordings.Add(recording);
+                await db.SaveChangesAsync();
+            }
+        }
     }
 }
