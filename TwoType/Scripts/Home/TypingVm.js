@@ -83,6 +83,7 @@ function TypingVM() {
         self.game(new Game(program));
         self.name("");
         self.phone("");
+        self.recording = [];
     };
 
     this.name = ko.observable("");
@@ -105,7 +106,7 @@ function TypingVM() {
 
     function setHighscores(result) {
         self.highscores(result.map(function (highscore) {
-            return { name: highscore.Name, time: highscore.PlayTime, phone: highscore.Phone };
+            return { name: highscore.Name, time: highscore.PlayTime, phone: highscore.Phone, id: highscore.Id };
         }));
     }
 

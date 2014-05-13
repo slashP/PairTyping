@@ -212,6 +212,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Home\customBindings.js" />
+    <Content Include="Scripts\Home\replayRecording.js" />
     <Content Include="Scripts\Home\stopwatch.js" />
     <Content Include="Scripts\Home\twoType.js" />
     <Content Include="Scripts\Home\TypingVm.js" />
