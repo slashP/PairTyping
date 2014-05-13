@@ -10,7 +10,7 @@
         </div>
         <div class="small-margin-top" data-bind="with: game">
             <div class="text-info well" data-bind="foreach: lines" style="font-family: Consolas">
-                <div class="type-line"><span data-bind="visible: indent">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="text-success type-line" data-bind="text: correct"></span><span class="text-danger type-line" data-bind="text: wrong"></span><span class="type-line" data-bind="text: remaining, attr:{first: remaining()[0]}, css:{'caret-blink':$parent.currentLineNumber() == $index()}"></span></div>
+                <div class="type-line"><span data-bind="visible: indent">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="text-success type-line" data-bind="text: correct"></span><span class="text-danger type-line" data-bind="text: wrong"></span><span class="type-line remaining" data-bind="text: remaining, attr:{first: remaining()[0]}, css:{'caret-blink':$parent.currentLineNumber() == $index()}"></span><span class="type-line newline" data-bind="visible: $index() < $parent.lines.length - 1, css:{'caret-blink':$parent.currentLineNumber() == $index() && isComplete(), 'text-success':$parent.currentLineNumber() > $index() && isComplete()}" first="&crarr;">&crarr;</span></div>
             </div>
         </div>
         <div data-bind="visible: isGameFinished">
