@@ -75,6 +75,8 @@ input[type="checkbox"].input-validation-error {
     left: 0;
 }
 
+#watch {background:url(Images/digitalFont.png);width:13px;height:23px;display:block}
+
 @keyframes caret {
   50% {
       color: white;
@@ -84,4 +86,11 @@ input[type="checkbox"].input-validation-error {
   100% {
       color: transparent;
   }
+}
+
+#fancyClock{
+	margin:40px auto;
+	height:200px;
+	border:1px solid #111111;
+	width:600px;
 }

@@ -1,8 +1,7 @@
 ﻿var Stopwatch = function (elem, options) {
-
-    var timer = createTimer(),
-        offset,
-        clock,
+    var self = this;
+    self.clock = ko.observable();
+    var offset,
         interval;
 
     // default options
@@ -10,13 +9,8 @@
     options.delay = options.delay || 1;
 
     // append elements     
-    elem.appendChild(timer);
     reset();
 
-    // private functions
-    function createTimer() {
-        return document.createElement("span");
-    }
 
     function start() {
         if (!interval) {
@@ -33,18 +27,13 @@
     }
 
     function reset() {
-        clock = 0;
-        render(0);
+        self.clock(0);
     }
 
     function update() {
-        clock += delta();
-        render();
+        self.clock(self.clock() + delta());
     }
 
-    function render() {
-        timer.innerHTML = clock / 1000;
-    }
 
     function delta() {
         var now = Date.now(),
@@ -55,7 +44,7 @@
     }
 
     function getTime() {
-        return clock;
+        return self.clock();
     }
 
     // public API

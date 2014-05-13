@@ -25,6 +25,7 @@ namespace TwoType
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/Clock.css",
                       "~/Content/site.css"));
         }
     }
