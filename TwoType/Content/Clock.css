@@ -1,6 +1,6 @@
 .clock{
 	/* The .clock div. Created dynamically by jQuery */
-	background-color:#ffffff;
+	background-color:#222222;
 	height:200px;
 	width:200px;
 	position:relative;
@@ -25,7 +25,7 @@
 .clock .bg, .clock .front{
 	width:100px;
 	height:200px;
-	background-color:#ffffff;
+	background-color:#222222;
 	position:absolute;
 	top:0;
 }
@@ -34,7 +34,7 @@
 	/* Holds the number of seconds, minutes or hours respectfully */
 	position:absolute;
 	width:200px;
-	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    /*font-family: FontAwesome;*/
 	z-index:20;
 	color:#aaaaaa;
 	font-size:60px;

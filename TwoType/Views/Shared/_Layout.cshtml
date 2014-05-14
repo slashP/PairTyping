@@ -11,12 +11,17 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
+    <div class="navbar navbar-inverse">
             <div class="navbar-header">
                 @Html.ActionLink("Pair Typing", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
+            <div id="clock" data-bind="clock: stopwatch.clock" class=""></div>
+        <div id="stopwatch" class="small-margin-top">
+            <span class="btn btn-lg  btn-restart" data-bind="click: restartGame">Restart</span>
+                
+
         </div>
+
     </div>
     <div class="container-fluid body-content">
         @RenderBody()

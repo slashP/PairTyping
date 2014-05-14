@@ -97,7 +97,7 @@ function animation(clock, current, total) {
     rotateElement(element, angle);
 
     // Setting the text inside of the display element, inserting a leading zero if needed:
-    clock.display.html(current < 10 && total > 10 ? '0' + current : current);
+    clock.display.html(current);
 };
 
 function rotateElement(element, angle) {

@@ -1,6 +1,6 @@
 ﻿(function () {
     var typing = new TypingVM();
-    ko.applyBindings(typing, document.getElementById("typing-area"));
+    ko.applyBindings(typing);
 
     window.addEventListener("keypress", keyPressed);
     window.addEventListener("keydown", specialCharacterPressed);
