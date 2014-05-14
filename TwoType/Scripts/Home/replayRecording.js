@@ -30,7 +30,7 @@ $.get("/api/highscore/recording?id=" + id, function(result) {
                 timeStarted = performance.now();
                 typing.restartGame();
                 intVal = setInterval(tick, timeout);
-            }, 3000);
+            }, 5000);
             return;
         }
         var now = performance.now();

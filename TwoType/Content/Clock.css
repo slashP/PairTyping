@@ -12,6 +12,8 @@
 .clock-container {
     width: 560px;
     overflow: hidden;
+    float: left;
+    clear: both;
 }
 
 .clock {
@@ -78,5 +80,5 @@ ul li {
     100% {
         opacity: 1.0;
         text-shadow: 0 0 20px #00c6ff;
-    };
+    }
 }

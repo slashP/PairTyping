@@ -18,7 +18,7 @@ namespace TwoType.Controllers
             List<HighscoreEntry> highscores;
             using (var db = new DataContext())
             {
-                highscores = await db.HighscoreEntries.OrderBy(x => x.PlayTime).Take(20).ToListAsync();
+                highscores = await db.HighscoreEntries.OrderBy(x => x.PlayTime).Take(50).ToListAsync();
             }
             return highscores;
         }
