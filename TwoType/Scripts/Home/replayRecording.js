@@ -1,15 +1,23 @@
 ﻿var typing = new TypingVM();
-var viewModel = {
-    typing: typing,
-    name: ko.observable(""),
-    time: ko.observable()
+var ViewModel = function () {
+    var self = this;
+    this.recordingTime = ko.observable();
+    ko.utils.extend(self, typing);
+    self.isGameFinished.subscribe(function(val) {
+        if (val) {
+            self.stopwatch.clock(self.recordingTime() * 1000);
+        }
+    });
+    self.restartGame = function() {
+        window.location = "/";
+    };
 }
-ko.applyBindings(viewModel, document.getElementById("typing-area"));
+var viewModel = new ViewModel(); 
+ko.applyBindings(viewModel);
 var id = location.href.split("/").reverse()[0];
 $.get("/api/highscore/recording?id=" + id, function(result) {
     var recordings = JSON.parse(result.Recordings);
-    viewModel.name(result.Name);
-    viewModel.time(result.PlayTime);
+    viewModel.recordingTime(result.PlayTime);
     var elementsTaken = 0;
     var timeout = 20;
     var timeStarted = performance.now();
