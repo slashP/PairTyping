@@ -47,10 +47,11 @@ input[type="checkbox"].input-validation-error {
 }
 
 .navbar-brand {
-    font-size: 100px;
+    font-size: 90px;
     margin-top: 60px;
     margin-left: 20px;
     margin-right: 100px;
+    font-family: Consolas;
 }
 
 .navbar-inverse .navbar-brand {
