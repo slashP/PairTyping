@@ -2,48 +2,16 @@
 
 ko.bindingHandlers['clock'] = {
     init: function (element, valueAccessor) {
-        var colors = ['orange', 'blue', 'green'];
-		
-        var tmp;
 
-        colors.forEach(function(color) {
-            // Creating a new element and setting the color as a class name:
-
-            tmp = $('<div>').attr('class', color + ' clock').html(
-                '<div class="display"></div>' +
-                '<div class="front left"></div>' +
-                '<div class="rotate left">' +
-                '<div class="bg left"></div>' +
-                '</div>' +
-                '<div class="rotate right">' +
-                '<div class="bg right"></div>' +
-                '</div>'
-            );
-
-            // Appending to the container:
-            $(element).append(tmp);
-
-            // Assigning some of the elements as variables for speed:
-            tmp.rotateLeft = tmp.find('.rotate.left');
-            tmp.rotateRight = tmp.find('.rotate.right');
-            tmp.display = tmp.find('.display');
-            gVars[color] = tmp;
-        });
-            
-        //var value = valueAccessor();
-
-        //// Next, whether or not the supplied model property is observable, get its current value
-        //var valueUnwrapped = ko.unwrap(value);
-
-        //var currentTime = new Date(valueUnwrapped);
-        //var minutter = currentTime.getMinutes();
-        //var sekunder = currentTime.getSeconds();
-        //var hundredeler = parseInt("" + (currentTime.getMilliseconds() / 10));
-
-
-        //animation(gVars.orange, minutter, 60);
-        //animation(gVars.blue, sekunder, 60);
-        //animation(gVars.green, hundredeler, 100);
+        var tmp = $('ul').html(
+            '<li id="min"></li>' +
+            '<li id="point">:</li>' +
+            '<li id="sec"></li>' +
+            '<li id="point">:</li>' +
+            '<li id="dec"></li>'
+        );
+        $(element).append(tmp);
+        
 
     },
     update: function (element, valueAccessor, allBindingsAccessor) {
@@ -56,12 +24,12 @@ ko.bindingHandlers['clock'] = {
         var currentTime = new Date(valueUnwrapped);
         var minutter = currentTime.getMinutes();
         var sekunder = currentTime.getSeconds();
-        var hundredeler = parseInt("" + (currentTime.getMilliseconds() / 100));
+        var hundredeler = parseInt("" + (currentTime.getMilliseconds() / 10));
 
 
-        animation(gVars.orange, minutter, 60);
-        animation(gVars.blue, sekunder, 60);
-        animation(gVars.green, hundredeler, 10);
+        $("#min").html((minutter < 10 ? "0" : "") + minutter);
+        $("#sec").html((sekunder < 10 ? "0" : "") + sekunder);
+        $("#dec").html((hundredeler < 10 ? "0" : "") + hundredeler);
     }
 };
 

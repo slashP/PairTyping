@@ -69,7 +69,7 @@ input[type="checkbox"].input-validation-error {
 
 .btn-restart {
     float: right;
-margin: 30px 40px 10px 10px;
+margin: 40px 40px 10px 10px;
 width: 210px;
 height: 90px;
 font-size: 50px;
@@ -77,6 +77,10 @@ font-weight: bold;
 color: #ffffff;
 background-color: #00A3FF;
 border-color: #344C53;
+position: absolute;
+top: 0px;
+z-index: 200;
+right: 0;
 }
 
 .btn-restart :hover :focus{

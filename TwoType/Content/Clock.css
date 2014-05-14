@@ -1,69 +1,82 @@
-.clock{
-	/* The .clock div. Created dynamically by jQuery */
-	background-color:#222222;
-	height:200px;
-	width:200px;
-	position:relative;
-	overflow:hidden;
-	float:left;
+@font-face {
+    font-family: 'BebasNeueRegular';
+    src: url('BebasNeue-webfont.eot');
+    src: url('BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('BebasNeue-webfont.woff') format('woff'),
+         url('BebasNeue-webfont.ttf') format('truetype'),
+         url('BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
-.clock .rotate{
-	/* There are two .rotate divs - one for each half of the background */
-	position:absolute;
-	width:200px;
-	height:200px;
-	top:0;
-	left:0;
+.clock-container {
+    width: 560px;
+    overflow: hidden;
 }
 
-.rotate.right{
-	display:none;
-	z-index:11;
+.clock {
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 15px;
+    color: #00c6ff;
 }
 
-.clock .bg, .clock .front{
-	width:100px;
-	height:200px;
-	background-color:#222222;
-	position:absolute;
-	top:0;
+
+ul {
+    width: 400px;
+    margin: 0 auto;
+    padding: 0px;
+    list-style: none;
+    text-align: center;
 }
 
-.clock .display{
-	/* Holds the number of seconds, minutes or hours respectfully */
-	position:absolute;
-	width:200px;
-    /*font-family: FontAwesome;*/
-	z-index:20;
-	color:#ffffff;
-	font-size:60px;
-	text-align:center;
-	top:65px;
-	left:0;
-	
-	/* CSS3 text shadow: */
-	/*'text-shadow:4px 4px 5px #333333;*/
+ul li {
+    display: inline;
+    font-size: 100px;
+    text-align: center;
+    font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+    -ms-text-shadow: 0 0 15px #ffffff;
+    text-shadow: 0 0 15px #ffffff;
 }
 
-/* The left part of the background: */
+#point {
+    position: relative;
+    -moz-animation: mymove 1s ease infinite;
+    -webkit-animation: mymove 1s ease infinite;
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
-.clock .bg.left{ left:0; }
+/* Simple Animation */
+@-webkit-keyframes mymove {
+    0% {opacity: 1.0;
+    text-shadow: 0 0 20px #00c6ff;
+}
 
-/* Individual styles for each color: */
-.orange .bg.left{ background:url(img/bg_orange.png) no-repeat left top; }
-.green .bg.left{ background:url(img/bg_green.png) no-repeat left top; }
-.blue .bg.left{	background:url(img/bg_blue.png) no-repeat left top; }
+50% {
+    opacity: 0;
+    text-shadow: none;
+}
 
-/* The right part of the background: */
-.clock .bg.right{ left:100px; }
+100% {
+    opacity: 1.0;
+    text-shadow: 0 0 20px #00c6ff;
+}	
+}
 
-.orange .bg.right{ background:url(img/bg_orange.png) no-repeat right top; }
-.green .bg.right{ background:url(img/bg_green.png) no-repeat right top; }
-.blue .bg.right{ background:url(img/bg_blue.png) no-repeat right top; }
+@-moz-keyframes mymove {
+    0% {
+        opacity: 1.0;
+        text-shadow: 0 0 20px #00c6ff;
+    }
 
+    50% {
+        opacity: 0;
+        text-shadow: none;
+    }
 
-.clock .front.left{
-	left:0;
-	z-index:10;
+    100% {
+        opacity: 1.0;
+        text-shadow: 0 0 20px #00c6ff;
+    };
 }
