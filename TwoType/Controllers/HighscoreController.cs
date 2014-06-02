@@ -9,7 +9,6 @@ using TwoType.Models;
 
 namespace TwoType.Controllers
 {
-    [Authorize(Users = "ciber")]
     public class HighscoreController : ApiController
     {
         [HttpGet]
@@ -26,6 +25,7 @@ namespace TwoType.Controllers
 
         [HttpPost]
         [Route("api/highscore")]
+        [Authorize(Users = "ciber")]
         public async Task<Highscores> Post(HighscoreEntry highscore)
         {
             if (string.IsNullOrEmpty(highscore.Name) || string.IsNullOrEmpty(highscore.Phone) || highscore.PlayTime == 0)
@@ -54,6 +54,7 @@ namespace TwoType.Controllers
 
         [HttpPost]
         [Route("api/highscore/recording")]
+        [Authorize(Users = "ciber")]
         public async Task<int> PostRecording(HighscoreRecording recording)
         {
             if (string.IsNullOrEmpty(recording.Name) || recording.PlayTime == 0)
