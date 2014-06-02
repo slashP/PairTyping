@@ -64,6 +64,8 @@ function TypingVM() {
         return self.game().isGameFinished();
     });
 
+    this.showCurrentPlace = ko.observable(true);
+
     this.hasStarted.subscribe(function (value) {
         if (value) {
             self.stopwatch.start();

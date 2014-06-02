@@ -22,6 +22,8 @@ textarea {
     color: #344c53;
 }
 
+
+
 .place {
     color: #EE7A1E;
     font-size: 100px;
@@ -72,9 +74,18 @@ input[type="checkbox"].input-validation-error {
 .navbar-inverse {
     background-color: #222222;
 }
-.btn-info {
+.modal-header {
+    background-color: #EE7A1E;
+    color: #ffffff;
+    font-size: 30px;
 
 }
+
+.modal-dialog {
+    width: 60%;
+}
+
+
 .btn-header {
     float: right;
     width: 300px;
@@ -87,7 +98,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 .btn-highscore {
-    background-color: #EE7A1E;;
+    background-color: #EE7A1E;
     border-color: #344C53;
     top: 0px;
     z-index: 200;
