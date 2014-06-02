@@ -129,6 +129,18 @@ function TypingVM() {
     this.addRecording = function (action, which) {
         self.recording.push({ action: action, which: which, time: self.stopwatch.getTime() / 1000 });
     }
+
+    this.currentPlace = ko.computed(function (parameters) {
+        var time = self.stopwatch.getTime();
+      
+        var place = 1;
+        self.highscores().forEach(function(score) {
+            if (score.time < time/1000) {
+                place++;
+            }
+        });
+        return place;
+    });
 }
 
 

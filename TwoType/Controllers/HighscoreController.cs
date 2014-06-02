@@ -9,6 +9,7 @@ using TwoType.Models;
 
 namespace TwoType.Controllers
 {
+    [Authorize(Users = "ciber")]
     public class HighscoreController : ApiController
     {
         [HttpGet]
