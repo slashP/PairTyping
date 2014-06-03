@@ -24,20 +24,28 @@
                         <li id="point">:</li>
                         <li id="sec"></li>
                     </ul>
+                <span data-bind="text: '#'+currentPlace()" class="place pull-right"></span>
                 </div>
             </div>
 
                 <div id="stopwatch" class="small-margin-top">
-                    <span class="btn btn-lg btn-header btn-restart" data-bind="click: restartGame">Restart</span>
-                    <a data-toggle="modal" href="#highscore" class="btn btn-lg btn-header btn-highscore">High Score</a>
+                    @*<span class="btn btn-lg btn-header btn-restart" data-bind="click: restartGame">Restart</span>
+                    <a data-toggle="modal" href="#highscore" class="btn btn-lg btn-header btn-highscore">High Score</a>*@
                 </div>
            
 
         </div>
         <div class="container-fluid body-content">
             @RenderBody()
-            <hr />
             <footer>
+                <div class="col-lg-6">
+                    <p class="row">Press ESC to view High Score</p>
+                    <p class="row">Press Ctrl + R to Restart</p>
+                </div>
+                
+                <img class="pull-right"src="/Content/img/Ciber_Logo.jpg">
+             
+                </img>
 
             </footer>
         </div>

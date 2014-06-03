@@ -61,7 +61,14 @@ function TypingVM() {
     });
 
     this.isGameFinished = ko.computed(function () {
-        return self.game().isGameFinished();
+        var finished = self.game().isGameFinished();
+        if (finished) {
+            $('html, body').animate({
+                scrollTop: 2000,
+                scrollLeft: 0
+            }, 1000);
+        }
+        return finished;
     });
 
     this.showCurrentPlace = ko.observable(true);
@@ -154,6 +161,14 @@ function TypingVM() {
             }
         });
         return place;
+    });
+
+    this.showHighScore = ko.observable(false);
+    $(document).keyup(function (e) {
+        if (e.keyCode == 27) {
+            e.preventDefault();
+            self.showHighScore(!self.showHighScore());
+        }   // esc
     });
 }
 

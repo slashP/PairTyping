@@ -4,7 +4,7 @@
 
 <div id="typing-area">
     <div class="col-sm-12">
-        
+
     </div>
     <div class="col-md-12">
         <div class="small-margin-top" data-bind="with: game">
@@ -12,42 +12,40 @@
                 <div class="type-line"><span data-bind="visible: indent">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="text-success type-line" data-bind="text: correct"></span><span class="text-danger type-line" data-bind="text: wrong"></span><span class="type-line remaining" data-bind="text: remaining, attr:{first: remaining()[0]}, css:{'caret-blink':$parent.currentLineNumber() == $index()}"></span><span class="type-line newline" data-bind="visible: $index() < $parent.lines.length - 1, css:{'caret-blink':$parent.currentLineNumber() == $index() && isComplete(), 'text-success':$parent.currentLineNumber() > $index() && isComplete()}" first="&crarr;">&crarr;</span></div>
             </div>
         </div>
-        <div class="highscore-registration" data-bind="visible: isGameFinished">
-            <div class="form-group">
-                <label for="nameInput">Name</label>
-                <input class="form-control" id="nameInput" placeholder="Player 1" data-bind="value: name, valueUpdate:'afterkeydown'">
+        <div class="highscore-registration" data-bind="visible: isGameFinished" id="registration">
+            <div class="col-lg-4">
+                
+                <div class="form-group">
+                    <label for="nameInput">Name</label>
+                    <input class="form-control" id="nameInput" placeholder="Player 1" data-bind="value: name, valueUpdate:'afterkeydown' ">
+                </div>
+                <div class="form-group">
+                    <label for="phoneInput">Phone</label>
+                    <input class="form-control" id="phoneInput" placeholder="Player 1" data-bind="value: phone, valueUpdate:'afterkeydown'">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="phoneInput">Phone</label>
-                <input class="form-control" id="phoneInput" placeholder="Player 1" data-bind="value: phone, valueUpdate:'afterkeydown'">
+            <div class="col-lg-4">
+
+                <div class="form-group">
+                    <label for="nameInput2">Name</label>
+                    <input class="form-control" id="nameInput2" placeholder="Player 2" data-bind="value: name2, valueUpdate:'afterkeydown'">
+                </div>
+                <div class="form-group">
+                    <label for="phoneInput2">Phone</label>
+                    <input class="form-control" id="phoneInput2" placeholder="Player 2" data-bind="value: phone2, valueUpdate:'afterkeydown'">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary " data-bind="click: postScore, enable: canSave">Submit score</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="nameInput2">Name</label>
-                <input class="form-control" id="nameInput2" placeholder="Player 2" data-bind="value: name2, valueUpdate:'afterkeydown'">
-            </div>
-            <div class="form-group">
-                <label for="phoneInput2">Phone</label>
-                <input class="form-control" id="phoneInput2" placeholder="Player 2" data-bind="value: phone2, valueUpdate:'afterkeydown'">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary" data-bind="click: postScore, enable: canSave">Submit score</button>
-            </div>
+
         </div>
     </div>
-    <div id="currentPlace">
-        <div class="checkbox">
-            <label>
-                <input class="checkbox-inline" style="width: 30px; height: 30px;" type="checkbox" data-bind="checked: showCurrentPlace" />
-                <p style="font-size: 25px; padding-left: 30px">Show current place </p>
-            </label>
-        </div>
-        <!-- ko if: showCurrentPlace-->
-        <span>Current place: </span> <span class="place" ><span data-bind="text: currentPlace"></span></span>
-        <!-- /ko -->
-    </div>
+
     
+
     <!-- Modal -->
-    <div class="modal fade" id="highscore" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div  id="highscore" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-bind="attr: {'class': 'modal fade '+ (showHighScore() ? 'in':''), 'style': 'display: '+ (showHighScore() ? 'block;': 'none;')}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -72,17 +70,14 @@
                         <!-- /ko -->
                     </table>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning btn-lg" data-dismiss="modal">Close</button>
-                </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     <div class="modal fade" id="highscore" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        
-       
-    </div>
 
+
+
+    </div>
 </div>
 
 
