@@ -12,17 +12,25 @@
                 <div class="type-line"><span data-bind="visible: indent">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="text-success type-line" data-bind="text: correct"></span><span class="text-danger type-line" data-bind="text: wrong"></span><span class="type-line remaining" data-bind="text: remaining, attr:{first: remaining()[0]}, css:{'caret-blink':$parent.currentLineNumber() == $index()}"></span><span class="type-line newline" data-bind="visible: $index() < $parent.lines.length - 1, css:{'caret-blink':$parent.currentLineNumber() == $index() && isComplete(), 'text-success':$parent.currentLineNumber() > $index() && isComplete()}" first="&crarr;">&crarr;</span></div>
             </div>
         </div>
-        <div data-bind="visible: isGameFinished">
+        <div class="highscore-registration" data-bind="visible: isGameFinished">
             <div class="form-group">
                 <label for="nameInput">Name</label>
-                <input class="form-control" id="nameInput" placeholder="Name" data-bind="value: name, valueUpdate:'afterkeydown'">
+                <input class="form-control" id="nameInput" placeholder="Player 1" data-bind="value: name, valueUpdate:'afterkeydown'">
             </div>
             <div class="form-group">
-                <label for="phoneInput">Phone(s)</label>
-                <input class="form-control" id="phoneInput" placeholder="Phone(s)" data-bind="value: phone, valueUpdate:'afterkeydown'">
+                <label for="phoneInput">Phone</label>
+                <input class="form-control" id="phoneInput" placeholder="Player 1" data-bind="value: phone, valueUpdate:'afterkeydown'">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" data-bind="click: postScore, enable: name() != '' && phone() != ''">Submit score</button>
+                <label for="nameInput2">Name</label>
+                <input class="form-control" id="nameInput2" placeholder="Player 2" data-bind="value: name2, valueUpdate:'afterkeydown'">
+            </div>
+            <div class="form-group">
+                <label for="phoneInput2">Phone</label>
+                <input class="form-control" id="phoneInput2" placeholder="Player 2" data-bind="value: phone2, valueUpdate:'afterkeydown'">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" data-bind="click: postScore, enable: canSave">Submit score</button>
             </div>
         </div>
     </div>
@@ -54,8 +62,8 @@
                             <th></th>
                         </tr>
                         <!-- ko foreach: highscores -->
-                        <tr data-bind="attr: { title: phone }">
-                            <td data-bind="text: name"></td>
+                        <tr data-bind="attr: { title: highscoreDisplayPhone }">
+                            <td data-bind="text: highscoreDisplayName"></td>
                             <td data-bind="text: time"></td>
                             <td class="text-center">
                                 <a data-bind="attr:{href: '/Home/ViewHighscore/' + id}" class="glyphicon glyphicon-play"></a>

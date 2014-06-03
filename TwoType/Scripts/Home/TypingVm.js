@@ -84,17 +84,24 @@ function TypingVM() {
     this.restartGame = function () {
         self.game(new Game(program));
         self.name("");
+        self.name2("");
         self.phone("");
+        self.phone2("");
         self.recording = [];
     };
 
     this.name = ko.observable("");
+    this.name2 = ko.observable("");
     this.phone = ko.observable("");
+    this.phone2 = ko.observable("");
+    this.canSave = ko.computed(function() {
+        return self.name() != '' && self.phone() != '' && self.name2() != '' && self.phone2() != '';
+    });
 
     this.highscores = ko.observableArray([]);
     this.postScore = function () {
         $.post("/api/highscore",
-            { name: self.name(), playTime: self.stopwatch.getTime() / 1000, phone: self.phone() },
+            { name: self.name(), name2: self.name2(), playTime: self.stopwatch.getTime() / 1000, phone: self.phone(), phone2: self.phone2() },
             function (result) {
                 if (result.Message && result.Message.indexOf("Authorization") > -1) {
                     self.name("Not this time bro. You must log in");
@@ -108,7 +115,12 @@ function TypingVM() {
 
     function setHighscores(result) {
         self.highscores(result.map(function (highscore) {
-            return { name: highscore.Name, time: highscore.PlayTime, phone: highscore.Phone, id: highscore.Id };
+            return {
+                highscoreDisplayName: highscore.Name + " & " + highscore.Name2,
+                highscoreDisplayPhone: highscore.Phone + " & " + highscore.Phone2,
+                time: highscore.PlayTime,
+                id: highscore.Id
+            };
         }));
     }
 

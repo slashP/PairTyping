@@ -6,9 +6,11 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using TwoType.Models;
+using TwoType.Properties;
 
 namespace TwoType.Controllers
 {
+
     public class HighscoreController : ApiController
     {
         [HttpGet]
@@ -18,8 +20,14 @@ namespace TwoType.Controllers
             List<HighscoreEntry> highscores;
             using (var db = new DataContext())
             {
-                highscores = await db.HighscoreEntries.OrderBy(x => x.PlayTime).Take(50).ToListAsync();
+                highscores =
+                    await
+                    db.HighscoreEntries.Where(x => x.GameTime > Settings.Default.FirstDayForHighscore)
+                        .OrderBy(x => x.PlayTime)
+                        .Take(50)
+                        .ToListAsync();
             }
+
             return highscores;
         }
 
@@ -28,7 +36,9 @@ namespace TwoType.Controllers
         [Authorize(Users = "ciber")]
         public async Task<Highscores> Post(HighscoreEntry highscore)
         {
-            if (string.IsNullOrEmpty(highscore.Name) || string.IsNullOrEmpty(highscore.Phone) || highscore.PlayTime == 0)
+            if (string.IsNullOrEmpty(highscore.Name) || string.IsNullOrEmpty(highscore.Phone)
+                || string.IsNullOrEmpty(highscore.Name2) || string.IsNullOrEmpty(highscore.Phone2)
+                || highscore.PlayTime == 0)
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }

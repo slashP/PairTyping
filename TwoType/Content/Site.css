@@ -174,3 +174,7 @@ input[type="checkbox"].input-validation-error {
 	border:1px solid #111111;
 	width:600px;
 }
+
+.highscore-registration {
+    font-size: medium;
+}
