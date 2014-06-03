@@ -6,7 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using TwoType.Models;
-using TwoType.Properties;
+using System.Configuration;
 
 namespace TwoType.Controllers
 {
@@ -18,11 +18,12 @@ namespace TwoType.Controllers
         public async Task<IEnumerable<HighscoreEntry>> Get()
         {
             List<HighscoreEntry> highscores;
+            var fromDate = DateTime.Parse(ConfigurationManager.AppSettings["FirstDayForHighscore"]);
             using (var db = new DataContext())
             {
                 highscores =
                     await
-                    db.HighscoreEntries.Where(x => x.GameTime > Settings.Default.FirstDayForHighscore)
+                    db.HighscoreEntries.Where(x => x.GameTime > fromDate)
                         .OrderBy(x => x.PlayTime)
                         .Take(50)
                         .ToListAsync();
