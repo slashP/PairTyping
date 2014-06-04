@@ -99,7 +99,9 @@ footer p {
 .modal-dialog {
     width: 60%;
 }
-
+p.row {
+    padding-left: 10px;
+}
 #logo {
     display: block;
     width: 296px;
@@ -122,35 +124,6 @@ footer p {
     position: absolute;
 }
 
-.btn-highscore {
-    background-color: #EE7A1E;
-    border-color: #344C53;
-    top: 0px;
-    z-index: 200;
-    right: 0;
-}
-
-
-
-.btn-restart {
-    background-color: #00A3FF;
-    border-color: #344C53;
-    top: 100px;
-    z-index: 200;
-    right: 0;
-}
-
-.btn-restart :hover :focus{
-    color: #00A3FF;
-    background-color: #ffffff;
-    border-color: #344C53;
-}
-
-.btn-highscore :hover :focus{
-    color: #00A3FF;
-    background-color: #ffffff;
-    border-color: #ffffff;
-}
 
 .small-margin-top {
     margin-top: 15px;
@@ -201,5 +174,5 @@ footer p {
 }
 
 .highscore-registration {
-    font-size: medium;
+    font-size: 50%;
 }
