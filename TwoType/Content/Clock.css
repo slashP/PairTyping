@@ -10,24 +10,22 @@
 }
 
 .clock-container {
-    width: 100%;
     overflow: hidden;
     clear: both;
 }
 
 .clock {
     width: 50%;
-    padding-top: 15px;
     color: #00c6ff;
 }
 
 
-ul {
+.clock ul {
     width: 70%;
     list-style: none;
 }
 
-ul li {
+.clock ul li {
     display: inline;
     font-size: 200%;
     text-align: center;

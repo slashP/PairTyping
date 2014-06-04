@@ -11,29 +11,42 @@
 
     </head>
     <body>
-        <div class="navbar navbar-inverse">
-            <div class="navbar-header">
+        <div class="navbar navbar-inverse col-lg-12">
+            <div class="row col-lg-8">
+            <div class="navbar-header col-lg-8">
                 @Html.ActionLink("Pair Typing", "Index", "Home", null, new {@class = "navbar-brand"})
             </div>
-            <div class="clock-container">
-                <div id="" data-bind="clock: stopwatch.clock" class="clock">
-                    <ul>
-                        <li id="hours"></li>
-                        <li id="point">:</li>
-                        <li id="min"></li>
-                        <li id="point">:</li>
-                        <li id="sec"></li>
-                    </ul>
-                <span data-bind="text: '#'+currentPlace()" class="place pull-right"></span>
+                <div class="clock-container col-lg-7">
+                    <div id="" data-bind="clock: stopwatch.clock" class="clock">
+                        <ul>
+                            <li id="hours"></li>
+                            <li id="point">:</li>
+                            <li id="min"></li>
+                            <li id="point">:</li>
+                            <li id="sec"></li>
+                        </ul>
+                    </div>
                 </div>
+                <div data-bind="text: '#'+currentPlace()" class="place col-lg-4"></div>
+
             </div>
-
-                <div id="stopwatch" class="small-margin-top">
-                    @*<span class="btn btn-lg btn-header btn-restart" data-bind="click: restartGame">Restart</span>
-                    <a data-toggle="modal" href="#highscore" class="btn btn-lg btn-header btn-highscore">High Score</a>*@
-                </div>
-           
-
+            <div  class="col-lg-3 information">
+                <table>
+                    <tr>
+                        <td class="larger"><span class="fa fa-user"></span><span class="fa fa-user"></span></td>
+                        <td>Two players</td>
+                    </tr>
+                    <tr>
+                        <td class="larger-font"><span class="fa fa-keyboard-o"></span></td>
+                        <td>One hand each on the keyboard</td>
+                    </tr>
+                    <tr>
+                        <td class="larger-font"><span class="fa fa-clock-o"></span></td>
+                        <td>Replicate the given code as fast as possible!</td>
+                    </tr>
+                </table>
+            </div>
+            
         </div>
         <div class="container-fluid body-content">
             @RenderBody()

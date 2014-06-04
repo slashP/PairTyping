@@ -22,14 +22,26 @@ textarea {
     color: #344c53;
 }
 
-
+.larger-font {
+    font-size: 150%;
+}
 
 .place {
     color: #EE7A1E;
     font-size: 200%;
-    width: 30%;
 }
 
+.information {
+    font-size: 45%;
+    color:white;
+    padding: 20px;
+
+}
+
+.information td {
+    min-width: 100px;
+    padding: 5px;
+}
 
 /* styles for validation helpers */
 .field-validation-error {
