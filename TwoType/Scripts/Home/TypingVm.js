@@ -56,19 +56,14 @@ function TypingVM() {
 
     this.game = ko.observable(new Game(program));
 
+    this.showHighScore = ko.observable(false);
+
     this.hasStarted = ko.computed(function () {
         return self.game().isAtLeastOneCharacterCorrect();
     });
 
     this.isGameFinished = ko.computed(function () {
-        var finished = self.game().isGameFinished();
-        if (finished) {
-            $('html, body').animate({
-                scrollTop: 2000,
-                scrollLeft: 0
-            }, 1000);
-        }
-        return finished;
+       return self.game().isGameFinished();
     });
 
     this.showCurrentPlace = ko.observable(true);
@@ -163,13 +158,6 @@ function TypingVM() {
         return place;
     });
 
-    this.showHighScore = ko.observable(false);
-    $(document).keyup(function (e) {
-        if (e.keyCode == 27) {
-            e.preventDefault();
-            self.showHighScore(!self.showHighScore());
-        }   // esc
-    });
 }
 
 
