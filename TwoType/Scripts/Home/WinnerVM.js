@@ -66,7 +66,7 @@
             entry.winner('false');
         });
         highscores[randomnumber].winner('true');
-        if (self.highscores().length > 3) {
+        if (self.highscores().length > 8) {
         self.highscores.remove(self.winners());
             
         }
