@@ -16,6 +16,28 @@ select,
 textarea {
     max-width: 280px;
 }
+.highscore {
+    font-size: 50%;
+}
+tr[winner="true"] {
+    background-color: blueviolet;
+    color: white;
+    border-width: 5px;
+    
+}
+
+tr[blink="true"] {
+    -webkit-animation: blink .5s step-end infinite alternate;
+    -moz-animation: blink .5s step-end infinite alternate;
+    -ms-animation: blink .5s step-end infinite alternate;
+    -o-animation: blink .5s step-end infinite alternate;
+    animation: blink .5s step-end infinite alternate;
+}
+
+@keyframes blink { 
+   50% { background-color: greenyellow; } 
+}
+
 
 #currentPlace {
     margin-left: 15px;
@@ -58,6 +80,14 @@ input.input-validation-error {
 
 input[type="checkbox"].input-validation-error {
     border: 0 none;
+}
+
+input {
+    font-size: 50%;
+}
+
+label {
+    font-size: 50%;
 }
 
 .validation-summary-errors {
@@ -154,6 +184,9 @@ p.row {
 }
 
 #watch {background:url(Images/digitalFont.png);width:13px;height:23px;display:block}
+
+
+
 
 @keyframes caret {
   50% {

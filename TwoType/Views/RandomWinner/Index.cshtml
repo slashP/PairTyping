@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+    </head>
+    <body>
+        <div class="body-content col-lg-10 col-lg-offset-1">
+            <div class="form-group">
+                <label for="time">Number of seconds to pick winner</label>
+                <input id="time" type="number" placeholder="" data-bind="value: pickingTime" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary" data-bind="click: pickRandomWinner">Pick Random Winner</button>
+            </div>
+            
+           
+            <div class="col-lg-12 panel-info pull-left" data-bind="visible: finished() == 'true', if: (winners() != null)">Congratulation! <p data-bind="text: winners().highscoreDisplayName"></p></div>
+            <table class="table highscore">
+                <tr> <th>Name</th> <th>Time</th> </tr> 
+                <!-- ko foreach: highscores --> 
+                <tr data-bind="attr: { title: highscoreDisplayPhone , winner: winner, blink: ''+($root.finished() == 'true' && winner() == 'true')}">
+                    <td data-bind="text: highscoreDisplayName"></td>
+                    <td data-bind="text: time"></td>
+                </tr> 
+                <!-- /ko --> 
+            </table> 
+            
+        </div> 
+        
+        <script src="/Scripts/knockout-3.1.0.js"></script>
+        <script src="/Scripts/Home/custombindings.js"></script>
+        <script src="/Scripts/Home/WinnerVM.js"></script>
+    </body>
+</html>

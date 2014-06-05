@@ -127,7 +127,7 @@ function TypingVM() {
     }
 
     function uploadRecording(currentEntry) {
-        $.post("/api/highscore/recording", {
+        $.post("api/highscore/recording", {
             id: currentEntry.Id,
             name: currentEntry.Name,
             playTime: currentEntry.PlayTime,

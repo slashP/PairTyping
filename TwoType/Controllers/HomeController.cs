@@ -27,5 +27,11 @@ namespace TwoType.Controllers
         {
             return View();
         }
+
+        public ActionResult RandomWinner()
+        {
+            return View();
+        }
     }
+
 }
