@@ -3,7 +3,7 @@
 
     this.highscores = ko.observableArray([]);
 
-    this.pickingTime = ko.observable(10);
+    this.pickingTime = ko.observable(20);
 
     var interval;
 
