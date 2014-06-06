@@ -25,7 +25,7 @@ namespace TwoType.Controllers
                     await
                     db.HighscoreEntries.Where(x => x.GameTime > fromDate)
                         .OrderBy(x => x.PlayTime)
-                        .Take(50)
+                        
                         .ToListAsync();
             }
 
