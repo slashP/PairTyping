@@ -47,9 +47,8 @@ function Game(program) {
 function TypingVM() {
     var self = this;
 
-    var program = "public static void Main(string[] args)\n" +
-        "{\n" +
-        "\tConsole.WriteLine(@\"Hello NDC!\");\n" +
+    var program = "public static void main(String[] args) {\n" +
+        "System.out.println(\"Hello Javazone\");\n" +
         "}";
 
     this.stopwatch = new Stopwatch(document.getElementById("stopwatch"), { delay: 123 });
