@@ -48,7 +48,7 @@ function TypingVM() {
     var self = this;
 
     var program = "public static void main(String[] args) {\n" +
-        "\tSystem.out.println(\"Hello Javazone\");\n" +
+        "\tSystem.out.println(\"Hello NTNU!\");\n" +
         "}";
 
     this.stopwatch = new Stopwatch(document.getElementById("stopwatch"), { delay: 123 });
