@@ -96,11 +96,16 @@ function TypingVM() {
     this.phone = ko.observable("");
     this.phone2 = ko.observable("");
     this.canSave = ko.computed(function() {
-        return self.name() != '' && self.phone() != '' && self.name2() != '' && self.phone2() != '';
+        return self.name() != '' && self.phone() != '' && self.name2() != '' && self.phone2() != '' && self.isSaving() === false;
     });
+    this.isSaving = ko.observable(false);
 
     this.highscores = ko.observableArray([]);
     this.postScore = function () {
+        if (self.isSaving()) {
+            return;
+        }
+        self.isSaving(true);
         $.post("/api/highscore",
             { name: self.name(), name2: self.name2(), playTime: self.stopwatch.getTime() / 1000, phone: self.phone(), phone2: self.phone2() },
             function (result) {
@@ -110,6 +115,7 @@ function TypingVM() {
                     setHighscores(result.HighscoreEntries);
                     uploadRecording(result.CurrentEntry);
                     self.restartGame();
+                    self.isSaving(false);
                 }
             });
     }
