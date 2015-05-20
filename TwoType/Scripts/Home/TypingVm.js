@@ -47,9 +47,9 @@ function Game(program) {
 function TypingVM() {
     var self = this;
 
-    var program = "public static void main(String[] args) {\n" +
-        "\tSystem.out.println(\"Hello NTNU!\");\n" +
-        "}";
+    var program = '(function iife() {\n' +
+        '\t$("button, a").click();\n' +
+        '}());';
 
     this.stopwatch = new Stopwatch(document.getElementById("stopwatch"), { delay: 123 });
 
