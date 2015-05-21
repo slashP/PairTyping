@@ -47,9 +47,10 @@ function Game(program) {
 function TypingVM() {
     var self = this;
 
-    var program = '(function iife() {\n' +
+    var program = 'setTimeout(function() {\n' +
+        '\t$("h1").text("I <3 @cibernorge");\n' +
         '\t$("button, a").click();\n' +
-        '}());';
+        '}, 1250);';
 
     this.stopwatch = new Stopwatch(document.getElementById("stopwatch"), { delay: 123 });
 
