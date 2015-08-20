@@ -47,10 +47,8 @@ function Game(program) {
 function TypingVM() {
     var self = this;
 
-    var program = 'setTimeout(function() {\n' +
-        '\t$("h1").text("I <3 @cibernorge");\n' +
-        '\t$("button, a").click();\n' +
-        '}, 1250);';
+    var program = 'console.log("Hello NTNU!");\n' +
+        '$("h1").text("I <3 @cibernorge");';
 
     this.stopwatch = new Stopwatch(document.getElementById("stopwatch"), { delay: 123 });
 
