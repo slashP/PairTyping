@@ -48,7 +48,7 @@ function TypingVM() {
     var self = this;
 
     var program = 'console.log("Hello NTNU!");\n' +
-        '$("h1").text("I <3 @cibernorge");';
+        '$("h1").text("I <3 @claveconsulting");';
 
     this.stopwatch = new Stopwatch(document.getElementById("stopwatch"), { delay: 123 });
 
@@ -152,7 +152,7 @@ function TypingVM() {
 
     this.currentPlace = ko.computed(function (parameters) {
         var time = self.stopwatch.getTime();
-      
+
         var place = 1;
         self.highscores().forEach(function(score) {
             if (score.time < time/1000) {

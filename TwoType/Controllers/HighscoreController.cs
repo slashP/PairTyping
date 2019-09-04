@@ -13,6 +13,8 @@ namespace TwoType.Controllers
 
     public class HighscoreController : ApiController
     {
+        private const string Clave = "clave";
+
         [HttpGet]
         [Route("api/highscore")]
         public async Task<IEnumerable<HighscoreEntry>> Get()
@@ -25,7 +27,7 @@ namespace TwoType.Controllers
                     await
                     db.HighscoreEntries.Where(x => x.GameTime > fromDate)
                         .OrderBy(x => x.PlayTime)
-                        
+
                         .ToListAsync();
             }
 
@@ -34,7 +36,7 @@ namespace TwoType.Controllers
 
         [HttpPost]
         [Route("api/highscore")]
-        [Authorize(Users = "ciber")]
+        [Authorize(Users = Clave)]
         public async Task<Highscores> Post(HighscoreEntry highscore)
         {
             if (string.IsNullOrEmpty(highscore.Name) || string.IsNullOrEmpty(highscore.Phone)
@@ -65,7 +67,7 @@ namespace TwoType.Controllers
 
         [HttpPost]
         [Route("api/highscore/recording")]
-        [Authorize(Users = "ciber")]
+        [Authorize(Users = Clave)]
         public async Task<int> PostRecording(HighscoreRecording recording)
         {
             if (string.IsNullOrEmpty(recording.Name) || recording.PlayTime == 0)
