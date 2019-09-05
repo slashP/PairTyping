@@ -213,6 +213,8 @@
     <Content Include="Content\img\bg_green.png" />
     <Content Include="Content\img\bg_orange.png" />
     <Content Include="Content\Clock.css" />
+    <Content Include="Content\img\clave_logo_negativ_RGB.png" />
+    <Content Include="Content\img\clave_logo_positiv_RGB.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -224,6 +226,10 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\basis-grotesque-regular-pro.eot" />
+    <Content Include="fonts\basis-grotesque-regular-pro.ttf" />
+    <Content Include="fonts\basis-grotesque-regular-pro.woff" />
+    <Content Include="fonts\basis-grotesque-regular-pro.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Home\customBindings.js" />
     <Content Include="Scripts\Home\replayRecording.js" />

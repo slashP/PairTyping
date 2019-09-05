@@ -1,10 +1,10 @@
 @font-face {
-    font-family: 'BebasNeueRegular';
-    src: url('BebasNeue-webfont.eot');
-    src: url('BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
-         url('BebasNeue-webfont.woff') format('woff'),
-         url('BebasNeue-webfont.ttf') format('truetype'),
-         url('BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    font-family: 'basis-grotesque-regular-pro';
+    src: url('basis-grotesque-regular-pro.eot');
+    src: url('basis-grotesque-regular-pro.eot?#iefix') format('embedded-opentype'),
+         url('basis-grotesque-regular-pro.woff2') format('woff2'),
+         url('basis-grotesque-regular-pro.woff') format('woff'),
+         url('basis-grotesque-regular-pro.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -16,7 +16,7 @@
 
 .clock {
     width: 50%;
-    color: #00c6ff;
+    color: #FFE6CD;
 }
 
 
@@ -44,25 +44,26 @@
 
 /* Simple Animation */
 @-webkit-keyframes mymove {
-    0% {opacity: 1.0;
-    text-shadow: 0 0 20px #00c6ff;
-}
+    0% {
+        opacity: 1.0;
+        text-shadow: 0 0 20px #FFE6CD;
+    }
 
 50% {
     opacity: 0;
     text-shadow: none;
 }
 
-100% {
-    opacity: 1.0;
-    text-shadow: 0 0 20px #00c6ff;
-}	
+    100% {
+        opacity: 1.0;
+        text-shadow: 0 0 20px #FFE6CD;
+    }	
 }
 
 @-moz-keyframes mymove {
     0% {
         opacity: 1.0;
-        text-shadow: 0 0 20px #00c6ff;
+        text-shadow: 0 0 20px #FFE6CD;
     }
 
     50% {
@@ -72,6 +73,6 @@
 
     100% {
         opacity: 1.0;
-        text-shadow: 0 0 20px #00c6ff;
+        text-shadow: 0 0 20px #FFE6CD;
     }
 }

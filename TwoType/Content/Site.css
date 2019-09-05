@@ -2,6 +2,15 @@
     padding-top: 0px;
     padding-bottom: 20px;
     font-size: 3vw;
+    background-color: #FFEBEB;
+    font-family: 'basis-grotesque-regular-pro';
+    src: url('basis-grotesque-regular-pro.eot');
+    src: url('basis-grotesque-regular-pro.eot?#iefix') format('embedded-opentype'),
+         url('basis-grotesque-regular-pro.woff2') format('woff2'),
+         url('basis-grotesque-regular-pro.woff') format('woff'),
+         url('basis-grotesque-regular-pro.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -49,15 +58,15 @@ tr[blink="true"] {
 }
 
 .place {
-    color: #EE7A1E;
+    color: #FFE6CD;
     font-size: 200%;
 }
 
 .information {
     font-size: 45%;
-    color:white;
+    color: white;
     padding: 20px;
-
+    color: #FFE6CD;
 }
 
 .information td {
@@ -107,21 +116,19 @@ label {
     margin-top: 60px;
     margin-left: 20px;
     margin-right: 100px;
-    font-family: Consolas;
 }
 
 .navbar-inverse .navbar-brand {
-    color: #ffffff;
+    color: #FFE6CD;
 }
 
 .navbar-inverse {
-    background-color: #222222;
+    background-color: #005550;
 }
 .modal-header {
-    background-color: #EE7A1E;
+    background-color: #FA9691;
     color: #ffffff;
     font-size: 30px;
-
 }
 footer p {
     font-size: 40%
@@ -166,10 +173,10 @@ p.row {
     position: relative;
 }
 
-#typing-area .type-line.text-success {
-    color: #006400;
-    background-color: #78C857;
-}
+    #typing-area .type-line.text-success {
+        color: #FFE6CD;
+        background-color: #005550;
+    }
 
 #typing-area .type-line.text-danger {
     color: rgb(114, 43, 42);
@@ -208,4 +215,8 @@ p.row {
 
 .highscore-registration {
     font-size: 50%;
+}
+
+.text-info {
+    background-color: #eee;
 }
